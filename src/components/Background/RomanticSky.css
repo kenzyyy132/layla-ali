@@ -68,7 +68,7 @@
 .sky__heart {
   bottom: -40px;
   animation-name: heart-rise;
-  opacity: 0.55;
+  opacity: 0.4;
 }
 
 .sky__petal {
@@ -210,6 +210,45 @@
   width: 96px;
 }
 
+/* butterflies: a fluttering, bobbing path on top of the screen crossing */
+.sky__butterfly-path {
+  display: block;
+}
+
+.sky__butterfly-path .butterfly {
+  display: block;
+  overflow: visible;
+  animation: butterfly-bob 2.4s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(243, 217, 139, 0.55));
+}
+
+.butterfly__wing--left,
+.butterfly__flap {
+  transform-origin: 20px 16px;
+  animation: butterfly-flap var(--flap, 0.24s) ease-in-out infinite alternate;
+}
+
+@keyframes butterfly-flap {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.2);
+  }
+}
+
+@keyframes butterfly-bob {
+  0% {
+    transform: translateY(-14px) rotate(-14deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(6deg);
+  }
+  100% {
+    transform: translateY(-6px) rotate(-8deg);
+  }
+}
+
 .sky__arrow svg {
   transform: rotate(var(--tilt, 0deg));
   filter: drop-shadow(0 0 6px rgba(243, 217, 139, 0.7));
@@ -242,8 +281,12 @@
     width: 52px !important;
   }
 
-  .sky__heart:nth-child(n + 7),
-  .sky__petal:nth-child(n + 16) {
+  .sky__heart:nth-child(n + 4),
+  .sky__petal:nth-child(n + 13) {
+    display: none;
+  }
+
+  .sky__butterfly--extra {
     display: none;
   }
 }

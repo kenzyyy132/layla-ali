@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { Heart, HeartArrow, Petal } from '../ornaments/Ornaments.jsx';
+import { Butterfly, Heart, HeartArrow, Petal } from '../ornaments/Ornaments.jsx';
 import './RomanticSky.css';
 
 const ART = '/images/art/';
@@ -21,12 +21,21 @@ const ARROWS = [
   { top: 60, dur: 11, delay: 21, tilt: 6 },
   { top: 82, dur: 10, delay: 35, tilt: -4 },
 ];
-const HEARTS = Array.from({ length: 9 }, (_, i) => ({
-  left: (i * 37 + 7) % 100,
-  size: 10 + ((i * 7) % 12),
-  dur: 16 + ((i * 5) % 10),
-  delay: -i * 2.3,
-}));
+// A few hearts only, spread wide and slow so they stay a gentle accent.
+const HEARTS = [
+  { left: 8, size: 14, dur: 26, delay: -3 },
+  { left: 38, size: 11, dur: 30, delay: -17 },
+  { left: 71, size: 15, dur: 28, delay: -9 },
+  { left: 92, size: 12, dur: 32, delay: -24 },
+];
+// Butterflies drift across on wavy paths, flapping as they go.
+const BUTTERFLIES = [
+  { dir: 'ltr', top: 24, size: 48, dur: 24, delay: 1 },
+  { dir: 'rtl', top: 44, size: 40, dur: 28, delay: 9 },
+  { dir: 'ltr', top: 68, size: 54, dur: 26, delay: 16 },
+  { dir: 'rtl', top: 14, size: 38, dur: 30, delay: 22 },
+  { dir: 'ltr', top: 88, size: 44, dur: 22, delay: 30 },
+];
 const PETALS = Array.from({ length: 12 }, (_, i) => ({
   left: (i * 29 + 4) % 100,
   size: 12 + ((i * 5) % 10),
@@ -116,6 +125,17 @@ export default function RomanticSky({ active }) {
             style={{ top: `${a.top}%`, animationDuration: `${a.dur}s`, animationDelay: `${a.delay}s`, '--tilt': `${a.tilt}deg` }}
           >
             <HeartArrow width={96} />
+          </span>
+        ))}
+        {BUTTERFLIES.map((f, i) => (
+          <span
+            key={i}
+            className={`sky__flyer sky__flyer--${f.dir} sky__butterfly${i >= 3 ? ' sky__butterfly--extra' : ''}`}
+            style={{ top: `${f.top}%`, width: f.size, animationDuration: `${f.dur}s`, animationDelay: `${f.delay}s`, '--flap': `${0.22 + (i % 3) * 0.04}s` }}
+          >
+            <span className="sky__butterfly-path" style={f.dir === 'rtl' ? { transform: 'scaleX(-1)' } : undefined}>
+              <Butterfly size={f.size} />
+            </span>
           </span>
         ))}
         {ANGELS.map((a, i) => (

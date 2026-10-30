@@ -121,11 +121,12 @@ function Wreath({ from, to, r = 92, count = 9, flip = false }) {
  * gold ring with a laurel wreath and a heart at its crown.
  */
 export function Monogram({ className = '', size = 140, first = 'A', second = 'L' }) {
+  // Same calligraphy as the couple's names (Pinyon Script).
   const letter = {
-    fontFamily: '"Cormorant Garamond", Georgia, serif',
-    fontStyle: 'italic',
-    fontWeight: 600,
-    fontSize: 132,
+    fontFamily: '"Pinyon Script", Georgia, serif',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 104,
     fill: 'url(#g-letter)',
     stroke: '#070d24',
     strokeWidth: 5,
@@ -148,13 +149,13 @@ export function Monogram({ className = '', size = 140, first = 'A', second = 'L'
       <Wreath from={196} to={300} />
       <Wreath from={164} to={60} flip />
       <path d="M120 30c-7-5-10-8-10-12a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 4-3 7-10 12z" fill="url(#g-gold)" />
-      <text x="104" y="158" textAnchor="middle" style={letter}>
+      <text x="102" y="148" textAnchor="middle" style={letter}>
         {first}
       </text>
-      <text x="142" y="168" textAnchor="middle" style={letter}>
+      <text x="140" y="158" textAnchor="middle" style={letter}>
         {second}
       </text>
-      <text x="104" y="158" textAnchor="middle" style={letter} clipPath="url(#mono-over)">
+      <text x="102" y="148" textAnchor="middle" style={letter} clipPath="url(#mono-over)">
         {first}
       </text>
       <circle cx="120" cy="212" r="3" fill={GOLD_LIGHT} />
@@ -186,6 +187,31 @@ export function Petal({ className = '', size = 18 }) {
     <svg className={className} width={size} height={size} viewBox="0 0 20 20" aria-hidden="true">
       <path d="M10 1c5 4 7 9 4 14-2 3-6 3-8 0C3 10 5 5 10 1z" fill="#fbf6ea" opacity="0.85" />
       <path d="M10 3c1 4 1 8-1 12" stroke="#e4c065" strokeWidth="0.8" fill="none" />
+    </svg>
+  );
+}
+
+/**
+ * Gold filigree butterfly. Each wing pair is its own group so CSS can flap it
+ * around the body (x = 20 in the 40 × 32 viewBox).
+ */
+export function Butterfly({ className = '', size = 34 }) {
+  const wing = (
+    <>
+      <path d="M20 15C15 3 5 0 2.5 7c-2 6 6 10 17.5 8z" fill="url(#g-gold)" />
+      <path d="M20 17c-9 0-15 5-13 10 2 4 9 1 13-10z" fill="url(#g-gold)" opacity="0.9" />
+      <path d="M17 12C14 7 9 5 7 8c-1.5 3 3 5 10 4z" fill="#fff6d6" opacity="0.45" />
+      <circle cx="9" cy="23" r="1.6" fill="#fff6d6" opacity="0.6" />
+    </>
+  );
+  return (
+    <svg className={`butterfly ${className}`} width={size} height={size * 0.8} viewBox="0 0 40 32" aria-hidden="true">
+      <g className="butterfly__wing butterfly__wing--left">{wing}</g>
+      <g className="butterfly__wing butterfly__wing--right" transform="translate(40 0) scale(-1 1)">
+        <g className="butterfly__flap">{wing}</g>
+      </g>
+      <path d="M20 9v17" stroke="#7d6018" strokeWidth="2" strokeLinecap="round" />
+      <path d="M20 9c-1-3-3-5-5-6M20 9c1-3 3-5 5-6" stroke="#d4af37" strokeWidth="0.8" fill="none" strokeLinecap="round" />
     </svg>
   );
 }
