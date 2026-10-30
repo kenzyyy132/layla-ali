@@ -1,0 +1,35 @@
+.arabic-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  margin: 0;
+  font-size: clamp(1.25rem, 4.6vw, 1.65rem);
+  text-align: center;
+  color: var(--gold-300);
+}
+
+/* Arabic must never get letter-spacing: it breaks the joins between letters. */
+.arabic-line__text {
+  max-width: 24ch;
+  font-family: var(--font-arabic);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0;
+  word-spacing: 0.12em;
+  text-transform: none;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  unicode-bidi: isolate;
+}
+
+.arabic-line__ornament {
+  flex: none;
+  width: 2.1em;
+  height: auto;
+  color: var(--gold-500);
+  transform: scaleX(-1);
+}
+
+.arabic-line__ornament--end {
+  transform: none;
+}

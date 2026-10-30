@@ -1,0 +1,170 @@
+.details {
+  --card-w: min(90vw, 460px);
+  position: relative;
+  padding: clamp(50px, 9vw, 90px) 0 clamp(40px, 8vw, 80px);
+  text-align: center;
+}
+
+.venue-card {
+  position: relative;
+  width: var(--card-w);
+  margin: clamp(46px, 7vw, 60px) auto 0;
+  padding: calc(var(--card-w) * 0.52) clamp(22px, 6vw, 40px) 40px;
+  color: var(--navy-800);
+  border-radius: 50% 50% 18px 18px / calc(var(--card-w) / 2) calc(var(--card-w) / 2) 18px 18px;
+  background:
+    radial-gradient(ellipse at 50% 10%, #fffdf7, transparent 60%),
+    linear-gradient(180deg, #fbf6ea, #efe5cd);
+  box-shadow:
+    0 0 0 2px var(--gold-500),
+    0 0 0 8px var(--navy-900),
+    0 0 0 9px var(--gold-600),
+    0 40px 80px rgba(0, 0, 0, 0.55);
+}
+
+.venue-card::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(176, 141, 42, 0.5);
+  border-radius: 50% 50% 10px 10px / calc(var(--card-w) / 2 - 12px) calc(var(--card-w) / 2 - 12px) 10px 10px;
+  pointer-events: none;
+}
+
+.venue-card__chandelier {
+  position: absolute;
+  top: calc(var(--card-w) * -0.04);
+  left: 50%;
+  width: calc(var(--card-w) * 0.44);
+  height: auto;
+  margin-left: calc(var(--card-w) * -0.22);
+  transform-origin: 50% 0;
+  animation: venue-chandelier 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 10px 18px rgba(138, 107, 28, 0.35));
+}
+
+@keyframes venue-chandelier {
+  from {
+    transform: rotate(-1deg);
+  }
+  to {
+    transform: rotate(1deg);
+  }
+}
+
+.venue-card__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-card__eyebrow {
+  margin: 0;
+  color: var(--gold-700);
+  font-size: 0.66rem;
+  letter-spacing: 0.35em;
+}
+
+.venue-card__calendar-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.venue-card__time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  font-size: 0.82rem;
+}
+
+.venue-card__time .icon {
+  width: 20px;
+  color: var(--gold-700);
+}
+
+.venue-card__note {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.venue-card__divider {
+  margin: 18px auto;
+  max-width: 60vw;
+  height: auto;
+}
+
+.venue-card__place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-card__pin {
+  width: 28px;
+  color: var(--gold-700);
+}
+
+.venue-card__venue {
+  margin: 8px 0 0;
+  font-size: clamp(1.05rem, 4vw, 1.3rem);
+  letter-spacing: 0.16em;
+}
+
+.venue-card__local {
+  margin: 2px 0;
+  opacity: 0.75;
+}
+
+.venue-card__address {
+  max-width: 28ch;
+  margin: 0 0 18px;
+}
+
+.venue-card__actions,
+.venue-card__calendar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.venue-card__calendar {
+  margin-top: 16px;
+}
+
+/* ---------- The royal carriage ---------- */
+
+.carriage {
+  width: min(78vw, 360px);
+  margin: clamp(40px, 7vw, 60px) auto 0;
+}
+
+.carriage__img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(243, 217, 139, 0.15));
+  transform-origin: 50% 90%;
+  animation: carriage-roll 1.8s ease-in-out infinite;
+}
+
+.carriage__caption {
+  margin-top: 8px;
+  color: var(--gold-300);
+  font-size: clamp(1.7rem, 6vw, 2.2rem);
+}
+
+@keyframes carriage-roll {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0.6deg);
+  }
+}

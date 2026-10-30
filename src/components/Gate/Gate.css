@@ -1,0 +1,437 @@
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(27, 47, 105, 0.9), transparent 65%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M60 8c10 14 10 26 0 38-10-12-10-24 0-38zM60 112c10-14 10-26 0-38-10 12-10 24 0 38zM8 60c14-10 26-10 38 0-12 10-24 10-38 0zM112 60c-14-10-26-10-38 0 12 10 24 10 38 0z'/%3E%3Ccircle cx='60' cy='60' r='6'/%3E%3C/g%3E%3C/svg%3E"),
+    var(--navy-900);
+}
+
+.gate__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.6vh, 26px);
+  padding: 24px 16px;
+}
+
+.gate__eyebrow {
+  /* leaves room for the cherub perched on the arch */
+  margin: 0 0 clamp(84px, 13vh, 120px);
+  color: var(--ivory-dim);
+  font-size: 0.72rem;
+}
+
+.gate__stage {
+  --door-ratio: 0.64;
+  position: relative;
+  width: min(64vw, 300px, calc(46vh * var(--door-ratio)));
+}
+
+.gate__candle {
+  position: absolute;
+  bottom: -4%;
+  z-index: 2;
+  width: 36%;
+}
+
+.gate__candle--left {
+  left: -30%;
+}
+
+.gate__candle--right {
+  right: -30%;
+}
+
+.gate__cherub {
+  position: absolute;
+  top: -21%;
+  left: 50%;
+  z-index: 3;
+  width: 42%;
+  margin-left: -21%;
+}
+
+/* tassels hang from the arch's shoulders */
+.gate__tassel {
+  position: absolute;
+  top: 8%;
+  z-index: 1;
+  width: 13%;
+  height: auto;
+  transform-origin: 50% 0;
+  animation: tassel-swing 5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.5));
+}
+
+.gate__tassel--left {
+  left: -9%;
+}
+
+.gate__tassel--right {
+  right: -9%;
+  animation-delay: -2.5s;
+}
+
+@keyframes tassel-swing {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+/* the golden padlock that keeps the doors shut */
+.gate__lock {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  z-index: 4;
+  width: 24%;
+  height: auto;
+  margin-left: -12%;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 16px rgba(243, 217, 139, 0.35));
+  animation: lock-glint 3.2s ease-in-out infinite;
+}
+
+@keyframes lock-glint {
+  50% {
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 26px rgba(255, 241, 193, 0.75));
+  }
+}
+
+/* ---------- The arch & its two door panels ---------- */
+
+.gate__arch {
+  position: relative;
+  display: flex;
+  aspect-ratio: var(--door-ratio);
+  border-radius: 50% 50% 0 0 / calc(var(--door-ratio) * 50%) calc(var(--door-ratio) * 50%) 0 0;
+  overflow: hidden;
+  perspective: 900px;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 3px var(--gold-500),
+    0 0 0 9px var(--navy-900),
+    0 0 0 10px var(--gold-600),
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(212, 175, 55, 0.25);
+}
+
+/* supplied door artwork keeps its own silhouette */
+.gate__arch--image {
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.gate__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 55%, #fffdf6, rgba(243, 217, 139, 0.75) 35%, rgba(212, 175, 55, 0.15) 70%);
+  opacity: 0;
+  transform: scaleX(0.05);
+}
+
+.gate__door {
+  position: relative;
+  flex: 1;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.gate__door--left {
+  transform-origin: 0 50%;
+}
+
+.gate__door--right {
+  transform-origin: 100% 50%;
+}
+
+.gate__door-face {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 9px),
+    radial-gradient(ellipse at 50% 35%, var(--navy-600), var(--navy-800) 60%, var(--navy-950));
+}
+
+.gate__door-frame {
+  position: absolute;
+  inset: 9% 12% 6%;
+  border: 1.5px solid var(--gold-500);
+  box-shadow: inset 0 0 0 5px transparent, inset 0 0 0 6px rgba(212, 175, 55, 0.4);
+}
+
+.gate__door--left .gate__door-frame {
+  border-top-left-radius: 100% 46%;
+  right: 8%;
+}
+
+.gate__door--right .gate__door-frame {
+  border-top-right-radius: 100% 46%;
+  left: 8%;
+}
+
+.gate__door-letter {
+  position: absolute;
+  top: 26%;
+  font-size: clamp(4.4rem, 15vw, 7.4rem);
+  line-height: 1;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+}
+
+.gate__door--left .gate__door-letter {
+  right: 6%;
+}
+
+.gate__door--right .gate__door-letter {
+  left: 8%;
+}
+
+.gate__door-knob {
+  position: absolute;
+  top: 80%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold-300), var(--gold-700));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.gate__door--left .gate__door-knob {
+  right: 7px;
+}
+
+.gate__door--right .gate__door-knob {
+  left: 7px;
+}
+
+.gate__door::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold-700), var(--gold-300), var(--gold-700));
+}
+
+.gate__door--left::after {
+  right: 0;
+}
+
+.gate__door--right::after {
+  left: 0;
+}
+
+.gate__door--image::after {
+  display: none;
+}
+
+/* each panel shows its half of the supplied door image */
+.gate__door-art {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+}
+
+.gate__door--left .gate__door-art {
+  background-position: 0 0;
+}
+
+.gate__door--right .gate__door-art {
+  background-position: 100% 0;
+}
+
+.gate__door-shade {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
+.gate__door--right .gate__door-shade {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2));
+}
+
+/* ---------- Call to action ---------- */
+
+.gate__button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(8px, 2vh, 18px);
+  padding: 13px 28px;
+  border: 1px solid var(--gold-500);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--navy-700), var(--navy-900));
+  color: var(--gold-300);
+  font-family: var(--font-caps);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(212, 175, 55, 0.12);
+  transition: box-shadow 0.4s, color 0.4s;
+}
+
+.gate__button:hover,
+.gate__button:focus-visible {
+  color: var(--ivory);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(212, 175, 55, 0.3), var(--gold-glow);
+}
+
+.gate__button:disabled {
+  cursor: progress;
+  opacity: 0.8;
+}
+
+.gate__pulse {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-300);
+}
+
+.gate__pulse::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 1px solid var(--gold-300);
+  border-radius: 50%;
+  animation: gate-pulse 1.8s ease-out infinite;
+}
+
+@keyframes gate-pulse {
+  from {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.gate__sound {
+  margin: 0;
+  color: var(--ivory-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ---------- Opening sequence ---------- */
+
+.gate--opening .gate__button,
+.gate--opening .gate__sound,
+.gate--opening .gate__arabic,
+.gate--opening .gate__eyebrow {
+  opacity: 0 !important;
+  transition: opacity 0.5s;
+}
+
+.gate--opening .gate__lock {
+  animation: lock-open 0.85s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+.gate--opening .gate__door--left {
+  animation: gate-door-left 1.7s 0.8s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+}
+
+.gate--opening .gate__door--right {
+  animation: gate-door-right 1.7s 0.8s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+}
+
+.gate--opening .gate__door-shade {
+  animation: gate-shade 1.7s 0.8s forwards;
+}
+
+.gate--opening .gate__glow {
+  animation: gate-glow 1.8s 0.8s ease-out forwards;
+}
+
+.gate--opening {
+  animation: gate-leave 0.9s 2.35s ease-in forwards;
+}
+
+@keyframes lock-open {
+  0% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-9deg);
+  }
+  24% {
+    transform: rotate(8deg);
+  }
+  36% {
+    transform: rotate(-5deg) scale(1.06);
+  }
+  48% {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(160%) rotate(18deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.gate--opening .gate__stage {
+  transition: transform 2.6s 0.7s cubic-bezier(0.6, 0, 0.2, 1);
+  transform: scale(1.18) !important;
+}
+
+@keyframes gate-door-left {
+  to {
+    transform: rotateY(96deg);
+  }
+}
+
+@keyframes gate-door-right {
+  to {
+    transform: rotateY(-96deg);
+  }
+}
+
+@keyframes gate-shade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gate-glow {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.05);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes gate-leave {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+

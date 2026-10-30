@@ -1,0 +1,95 @@
+.music-btn {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--gold-500);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--navy-600), var(--navy-900));
+  color: var(--gold-300);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(212, 175, 55, 0.12);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+
+.music-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(212, 175, 55, 0.25), var(--gold-glow);
+}
+
+.music-btn .icon {
+  width: 22px;
+  transition: opacity 0.3s;
+}
+
+.music-btn__bars {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.music-btn__bars i {
+  width: 3px;
+  height: 30%;
+  border-radius: 2px;
+  background: var(--gold-300);
+}
+
+.music-btn.is-playing .icon {
+  opacity: 0;
+}
+
+.music-btn.is-playing .music-btn__bars {
+  opacity: 1;
+}
+
+.music-btn.is-playing .music-btn__bars i {
+  animation: music-bar 0.714s ease-in-out infinite alternate;
+}
+
+.music-btn__bars i:nth-child(2) {
+  animation-delay: -0.24s !important;
+}
+
+.music-btn__bars i:nth-child(3) {
+  animation-delay: -0.48s !important;
+}
+
+.music-hint {
+  position: fixed;
+  right: calc(78px + env(safe-area-inset-right));
+  bottom: calc(26px + env(safe-area-inset-bottom));
+  z-index: 150;
+  padding: 8px 16px;
+  border: 1px solid var(--gold-500);
+  border-radius: 999px;
+  background: var(--navy-900);
+  color: var(--gold-300);
+  font-family: var(--font-caps);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  animation: music-hint 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes music-hint {
+  to {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), var(--gold-glow);
+  }
+}
+
+@keyframes music-bar {
+  to {
+    height: 100%;
+  }
+}

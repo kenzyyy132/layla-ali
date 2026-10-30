@@ -1,0 +1,11 @@
+.save-date {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.save-date .pill {
+  font-size: 0.64rem;
+}

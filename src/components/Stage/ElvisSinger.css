@@ -1,0 +1,150 @@
+/* Layer art is 484 × 844. Pivots: feet ≈ (51%, 96%), neck ≈ (70%, 37.4%), shoulder ≈ (36.6%, 47.2%). */
+.singer {
+  --beat: 0.714s;
+  position: relative;
+  aspect-ratio: 484 / 844;
+}
+
+.singer__body,
+.singer__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.singer__layer {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.singer__body {
+  transform-origin: 51% 96%;
+  animation: singer-sway calc(var(--beat) * 4) ease-in-out infinite;
+}
+
+.singer__layer--head {
+  transform-origin: 70% 37.4%;
+  animation: singer-nod calc(var(--beat) * 2) ease-in-out infinite;
+}
+
+.singer__layer--arm {
+  transform-origin: 36.6% 47.2%;
+  animation: singer-point calc(var(--beat) * 4) ease-in-out infinite;
+}
+
+.singer__sparkle {
+  position: absolute;
+  width: 11%;
+  height: auto;
+  animation: singer-sparkle 1.8s ease-in-out infinite;
+}
+
+.singer__sparkle--mic {
+  top: 31%;
+  left: 30%;
+}
+
+.singer__sparkle--hand {
+  top: 42%;
+  left: -6%;
+  animation-delay: -0.9s;
+}
+
+/* notes rise from the microphone, by the mouth */
+.singer__notes {
+  position: absolute;
+  top: 30%;
+  left: 48%;
+}
+
+.singer__notes span {
+  --dx: 1;
+  position: absolute;
+  color: var(--gold-300);
+  font-size: clamp(16px, 3.4vw, 26px);
+  text-shadow: 0 0 10px rgba(243, 217, 139, 0.9);
+  opacity: 0;
+  animation: singer-note 3.6s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+
+.singer__notes svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  filter: drop-shadow(0 0 6px rgba(243, 217, 139, 0.9));
+}
+
+.singer__notes span:nth-child(odd) {
+  --dx: -1;
+}
+
+.singer:not(.is-singing) *,
+.singer:not(.is-singing) *::before {
+  animation-play-state: paused;
+}
+
+@keyframes singer-sway {
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
+  }
+  50% {
+    transform: rotate(1.8deg) translateY(-0.6%);
+  }
+}
+
+@keyframes singer-nod {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg) translate(-0.8%, 0.6%);
+  }
+}
+
+/* pointing arm: two sweeps per bar, like singing "to you" */
+@keyframes singer-point {
+  0%,
+  100% {
+    transform: rotate(4deg);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-8deg) translateY(-1%);
+  }
+}
+
+@keyframes singer-sparkle {
+  0%,
+  100% {
+    transform: scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1) rotate(30deg);
+    opacity: 1;
+  }
+}
+
+@keyframes singer-note {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--dx) * clamp(50px, 14vw, 120px)), clamp(-170px, -30vw, -110px)) scale(1.15)
+      rotate(calc(var(--dx) * 18deg));
+    opacity: 0;
+  }
+}

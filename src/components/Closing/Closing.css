@@ -1,0 +1,85 @@
+.closing {
+  padding: clamp(50px, 9vw, 90px) 16px clamp(90px, 12vw, 120px);
+  text-align: center;
+}
+
+.closing__keepsake-wrap {
+  position: relative;
+  width: min(72vw, 360px);
+  margin: 0 auto;
+}
+
+.keepsake {
+  margin: 0;
+  transform: rotate(-3deg);
+  transition: transform 0.8s var(--ease-out);
+}
+
+.keepsake:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.keepsake img,
+.keepsake__placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 1700;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--gold-500), 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(212, 175, 55, 0.2);
+}
+
+.keepsake__placeholder {
+  background: linear-gradient(110deg, var(--navy-800) 30%, var(--navy-600) 50%, var(--navy-800) 70%) 0 0 / 300% 100%;
+  animation: keepsake-shimmer 1.6s linear infinite;
+}
+
+@keyframes keepsake-shimmer {
+  to {
+    background-position: -300% 0;
+  }
+}
+
+.closing__cupid {
+  position: absolute;
+  z-index: 2;
+  width: 46%;
+}
+
+.closing__cupid--left {
+  top: -8%;
+  left: -32%;
+}
+
+.closing__cupid--right {
+  bottom: 4%;
+  right: -34%;
+}
+
+.closing__title {
+  margin-top: 48px;
+}
+
+.closing__names {
+  margin: 6px 0 14px;
+  color: var(--ivory-dim);
+  font-size: 0.82rem;
+  letter-spacing: 0.4em;
+}
+
+.closing__arabic {
+  margin-bottom: 24px;
+}
+
+.closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.closing__foot {
+  margin: 40px 0 0;
+  color: var(--gold-500);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+}

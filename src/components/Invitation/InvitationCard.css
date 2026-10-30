@@ -1,0 +1,149 @@
+.invite {
+  --card-w: min(92vw, 520px);
+  position: relative;
+  padding: clamp(130px, 18vw, 170px) 0 clamp(60px, 10vw, 100px);
+  perspective: 1400px;
+}
+
+.invite__card {
+  position: relative;
+  width: var(--card-w);
+  margin: 0 auto;
+  padding: calc(var(--card-w) * 0.2) clamp(18px, 5vw, 46px) 44px;
+  text-align: center;
+  border-radius: 50% 50% 22px 22px / calc(var(--card-w) / 2) calc(var(--card-w) / 2) 22px 22px;
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(44, 74, 150, 0.55), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M32 10c6 8 6 16 0 22-6-6-6-14 0-22zM32 54c6-8 6-16 0-22-6 6-6 14 0 22z' fill='none' stroke='%23d4af37' stroke-opacity='0.08'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--navy-700), var(--navy-900));
+  box-shadow:
+    0 0 0 2px var(--gold-500),
+    0 0 0 8px var(--navy-950),
+    0 0 0 9px var(--gold-600),
+    0 40px 80px rgba(0, 0, 0, 0.6),
+    0 0 90px rgba(212, 175, 55, 0.18);
+  transform-origin: 50% 100%;
+}
+
+.invite__border {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(243, 217, 139, 0.45);
+  border-radius: 50% 50% 14px 14px / calc(var(--card-w) / 2 - 14px) calc(var(--card-w) / 2 - 14px) 14px 14px;
+  pointer-events: none;
+}
+
+.invite__cherub {
+  position: absolute;
+  top: calc(var(--card-w) * -0.25);
+  left: 50%;
+  width: calc(var(--card-w) * 0.34);
+  margin-left: calc(var(--card-w) * -0.17);
+  z-index: 2;
+}
+
+.invite__ribbon {
+  position: absolute;
+  right: -14%;
+  bottom: -6%;
+  z-index: 2;
+  width: 46%;
+  pointer-events: none;
+  transform: rotate(8deg);
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.5));
+  animation: ribbon-sway 7s ease-in-out infinite alternate;
+}
+
+@keyframes ribbon-sway {
+  to {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+.invite__blessing {
+  font-size: clamp(0.92rem, 3.5vw, 1.3rem);
+}
+
+.invite__seal {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 4px;
+}
+
+.invite__seal svg {
+  width: clamp(120px, 34vw, 160px);
+  height: auto;
+  filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.45));
+}
+
+.invite__families {
+  margin: 6px 0 0;
+  color: var(--ivory);
+  font-size: clamp(1.1rem, 3.6vw, 1.35rem);
+  font-style: italic;
+}
+
+.invite__names {
+  margin: 2px 0 6px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8.4vw, 3.3rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  background: var(--gold-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-sheen 8s linear infinite;
+}
+
+.invite__amp {
+  font-family: var(--font-script);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.invite__invite {
+  max-width: 30ch;
+  margin: 0 auto 10px;
+  color: var(--gold-300);
+  font-size: clamp(0.68rem, 2.4vw, 0.8rem);
+  line-height: 1.9;
+}
+
+.invite__body {
+  max-width: 30ch;
+  margin: 0 auto;
+  color: var(--ivory-dim);
+  font-size: clamp(1.02rem, 3.2vw, 1.2rem);
+  font-style: italic;
+}
+
+.invite__clock {
+  width: min(100%, 380px);
+  margin: 28px auto 0;
+}
+
+.invite__candle {
+  display: none;
+}
+
+@media (min-width: 760px) {
+  .invite__candle {
+    position: absolute;
+    bottom: 12%;
+    display: block;
+    width: 130px;
+  }
+
+  .invite__candle--left {
+    left: calc(50% - var(--card-w) / 2 - 150px);
+  }
+
+  .invite__candle--right {
+    right: calc(50% - var(--card-w) / 2 - 150px);
+  }
+}

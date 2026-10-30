@@ -1,0 +1,129 @@
+.message {
+  --arch-w: min(84vw, 440px);
+  padding: clamp(40px, 8vw, 80px) 0 clamp(70px, 12vw, 110px);
+}
+
+.message__scene {
+  position: relative;
+  width: var(--arch-w);
+  margin: 0 auto;
+}
+
+.message__arch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: calc(var(--arch-w) * 0.28) clamp(22px, 6vw, 44px) clamp(110px, 26vw, 140px);
+  text-align: center;
+  border-radius: 50% 50% 0 0 / calc(var(--arch-w) / 2) calc(var(--arch-w) / 2) 0 0;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(243, 217, 139, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--navy-600), var(--navy-800));
+  box-shadow:
+    0 0 0 2px var(--gold-500),
+    0 0 0 7px var(--navy-950),
+    0 0 0 8px rgba(212, 175, 55, 0.6),
+    0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.message__arch::before {
+  content: '';
+  position: absolute;
+  inset: 12px 12px 0;
+  border: 1px solid rgba(243, 217, 139, 0.35);
+  border-bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.message__sprig {
+  width: 30px;
+  color: var(--gold-300);
+}
+
+.message__text {
+  margin: 0;
+  color: var(--ivory);
+  font-family: var(--font-caps);
+  font-size: clamp(0.78rem, 2.6vw, 0.92rem);
+  letter-spacing: 0.1em;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+.message__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.message__thanks {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: var(--ivory-dim);
+  font-style: italic;
+}
+
+.message__thanks .script {
+  color: var(--gold-300);
+  font-size: 1.9rem;
+  font-style: normal;
+}
+
+.message__deadline {
+  margin: 0;
+  color: var(--ivory-dim);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.message__chandelier {
+  position: absolute;
+  top: -30px;
+  height: auto;
+  width: clamp(96px, 26vw, 140px);
+  z-index: 2;
+}
+
+.message__chandelier--left {
+  left: -6%;
+}
+
+.message__chandelier {
+  transform-origin: 50% 0;
+  animation: chandelier-sway 8s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 18px rgba(243, 217, 139, 0.35));
+}
+
+.message__chandelier--right {
+  right: -6%;
+  animation-delay: -4s;
+}
+
+@keyframes chandelier-sway {
+  from {
+    transform: rotate(-1.5deg);
+  }
+  to {
+    transform: rotate(1.5deg);
+  }
+}
+
+.message__cupid {
+  position: absolute;
+  bottom: -18px;
+  z-index: 2;
+  width: clamp(110px, 32vw, 170px);
+}
+
+.message__cupid--left {
+  left: -14%;
+}
+
+.message__cupid--right {
+  right: -14%;
+}

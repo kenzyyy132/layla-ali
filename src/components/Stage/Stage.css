@@ -1,0 +1,343 @@
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(54px, 9vh, 84px) 16px 70px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 52%, rgba(243, 217, 139, 0.14), transparent 70%),
+    linear-gradient(180deg, transparent 70%, var(--navy-900));
+}
+
+/* ---------- Ornamental frame ---------- */
+
+.stage__frame {
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+}
+
+.stage__frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.stage__corner {
+  position: absolute;
+  width: clamp(60px, 13vw, 120px);
+  height: auto;
+}
+
+.stage__corner.corner--tl {
+  top: 0;
+  left: 0;
+}
+
+.stage__corner.corner--tr {
+  top: 0;
+  right: 0;
+}
+
+.stage__corner.corner--bl {
+  bottom: 0;
+  left: 0;
+}
+
+.stage__corner.corner--br {
+  right: 0;
+  bottom: 0;
+}
+
+.stage__crest {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  height: auto;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 12px rgba(243, 217, 139, 0.5));
+}
+
+.stage__sides {
+  display: none;
+}
+
+/* gold vine climbing both sides of the frame */
+.stage__vine {
+  position: absolute;
+  top: 12%;
+  z-index: 2;
+  height: 76%;
+  width: auto;
+  opacity: 0.9;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(243, 217, 139, 0.25));
+}
+
+.stage__vine--left {
+  left: 4px;
+}
+
+.stage__vine--right {
+  right: 4px;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 700px) {
+  .stage__vine {
+    top: 44%;
+    height: 46%;
+    opacity: 0.75;
+  }
+}
+
+.stage__sub {
+  max-width: 32ch;
+  margin-inline: auto !important;
+}
+
+.stage__arabic {
+  margin-top: 6px;
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+}
+
+/* ---------- Title ---------- */
+
+.stage__title {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.stage__eyebrow {
+  margin: 0;
+  color: var(--ivory-dim);
+  font-size: clamp(0.66rem, 1.8vw, 0.8rem);
+}
+
+.stage__names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 0.25em;
+  margin: 4px 0 0;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.stage__name {
+  font-family: var(--font-script);
+  font-size: clamp(3.3rem, 13vw, 5.8rem);
+  padding: 0 0.1em;
+  background: var(--gold-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-sheen 8s linear infinite;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.5));
+}
+
+.stage__amp {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--ivory);
+}
+
+.stage__sub {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 2px 0 0;
+  color: var(--gold-300);
+  font-size: clamp(0.6rem, 1.7vw, 0.74rem);
+  line-height: 1.8;
+}
+
+.stage__date {
+  color: var(--ivory-dim);
+  letter-spacing: 0.3em;
+}
+
+/* ---------- The scene (600 × 760 art box) ---------- */
+
+.stage__scene {
+  position: relative;
+  width: min(100%, 560px, calc((100svh - 290px) * 600 / 760));
+  min-width: min(100%, 320px);
+  aspect-ratio: 600 / 760;
+  margin-top: -4px;
+}
+
+.stage__light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stage__rays {
+  position: absolute;
+  top: 34%;
+  left: -5%;
+  width: 110%;
+  height: auto;
+  overflow: visible;
+  transform: translateY(-50%);
+  animation: rays-turn 140s linear infinite;
+  -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 30%, transparent 68%);
+}
+
+.stage__rays line {
+  stroke: var(--gold-400);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.stage__halo {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  width: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 253, 246, 0.35), rgba(243, 217, 139, 0.16) 55%, transparent 72%);
+  box-shadow:
+    0 0 0 1px rgba(243, 217, 139, 0.55),
+    0 0 0 9px rgba(7, 13, 36, 0.15),
+    0 0 0 10px rgba(243, 217, 139, 0.3),
+    0 0 80px rgba(243, 217, 139, 0.3);
+  animation: halo-breathe 4.3s ease-in-out infinite;
+}
+
+.stage__stairs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent);
+}
+
+.stage__singer {
+  position: absolute;
+  bottom: 45%;
+  left: 35%;
+  z-index: 2;
+  width: 31%;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.45));
+}
+
+.stage__cupids {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.stage__cupid {
+  position: absolute;
+  width: 31%;
+}
+
+.stage__cupid--left {
+  top: 3%;
+  left: -6%;
+}
+
+.stage__cupid--right {
+  top: 6%;
+  right: -7%;
+}
+
+.stage__listen {
+  position: absolute;
+  top: 47%;
+  right: -2%;
+  z-index: 4;
+  width: 36%;
+}
+
+/* ---------- Scroll cue ---------- */
+
+.scroll-cue {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  color: var(--gold-300);
+  font-size: 0.62rem;
+  text-decoration: none;
+}
+
+.scroll-cue__line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--gold-300), transparent);
+  transform-origin: top;
+  animation: scroll-cue 2.2s ease-in-out infinite;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+@keyframes rays-turn {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes halo-breathe {
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(243, 217, 139, 0.75),
+      0 0 0 9px rgba(7, 13, 36, 0.15),
+      0 0 0 10px rgba(243, 217, 139, 0.4),
+      0 0 110px rgba(243, 217, 139, 0.45);
+  }
+}
+
+@media (min-width: 900px) {
+  .stage__sides {
+    display: block;
+  }
+
+  .stage__candle {
+    position: absolute;
+    bottom: 40px;
+    width: clamp(120px, 11vw, 170px);
+  }
+
+  .stage__candle--left {
+    left: max(40px, calc(50% - 520px));
+  }
+
+  .stage__candle--right {
+    right: max(40px, calc(50% - 520px));
+  }
+}

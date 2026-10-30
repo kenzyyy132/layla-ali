@@ -1,0 +1,67 @@
+.listen {
+  display: block;
+  padding: 6% 4%;
+  border: 0;
+  border-radius: 50%;
+  /* soft navy backdrop keeps the gold legible over the ivory balcony */
+  background: radial-gradient(ellipse closest-side, rgba(7, 13, 36, 0.88), rgba(7, 13, 36, 0.6) 70%, transparent);
+  color: var(--gold-300);
+  cursor: pointer;
+  filter: drop-shadow(0 0 8px rgba(243, 217, 139, 0.35));
+  transition: transform 0.4s var(--ease-out), filter 0.4s;
+}
+
+.listen svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.listen:hover,
+.listen:focus-visible {
+  transform: scale(1.05) rotate(-2deg);
+  filter: drop-shadow(0 0 14px rgba(243, 217, 139, 0.7));
+}
+
+.listen__text {
+  font-family: var(--font-script);
+  font-size: 30px;
+  fill: currentColor;
+}
+
+.listen__note {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.listen.is-playing .listen__note {
+  animation: listen-hop 0.714s ease-in-out infinite alternate;
+}
+
+.listen.is-playing .listen__note:nth-child(2) {
+  animation-delay: -0.18s;
+}
+
+.listen.is-playing .listen__note:nth-child(3) {
+  animation-delay: -0.36s;
+}
+
+.listen.is-playing .listen__note:nth-child(4) {
+  animation-delay: -0.54s;
+}
+
+.listen:not(.is-playing) .listen__text {
+  animation: listen-beckon 2.4s ease-in-out infinite;
+}
+
+@keyframes listen-hop {
+  to {
+    transform: translateY(-5px) rotate(-6deg);
+  }
+}
+
+@keyframes listen-beckon {
+  50% {
+    opacity: 0.55;
+  }
+}
